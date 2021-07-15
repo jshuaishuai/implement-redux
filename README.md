@@ -8,8 +8,6 @@
 
 ### Redux 工作流程
 
-![](https://aht-cdn.dbappsecurity.com.cn/redux.jpg)
-
 - Redux 可以将应用程序的整个全局状态存储在一个单一的 store 对象树中
 - 全局转态是不可以直接修改的，需要派发一个 action 即一个动作给 store 修改
 - 为了描述 action 如何改变状态 ，你需要编写 reducer 函数，该函数基于旧状态和操作计算新状态
