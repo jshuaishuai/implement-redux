@@ -6,19 +6,21 @@ export const initialState: CountProps = {
   value: 0,
 };
 // action-type
-export const INCREMENTED = 'INCREMENTED';
-export const DECREMENTED = 'DECREMENTED';
+const INCREMENTED = 'INCREMENTED';
+const DECREMENTED = 'DECREMENTED';
 // action 类型别名
-type DoIncremented = {
+export type DoIncremented = {
   type: typeof INCREMENTED;
   payload: number;
 };
 
-type DoDecremented = {
+export type DoDecremented = {
   type: typeof DECREMENTED;
   payload: number;
 };
 // action
+export type Incremented = (param: number) => DoIncremented;
+export type Decremented = (param: number) => DoDecremented;
 
 export const incremented = (param: number): DoIncremented => {
   return {
@@ -50,7 +52,7 @@ export default function (
       return { value: state.value + action.payload };
     }
     case DECREMENTED: {
-      return { value: state.value + action.payload };
+      return { value: state.value - action.payload };
     }
     default:
       return state;

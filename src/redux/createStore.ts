@@ -1,4 +1,4 @@
-import { Action } from './types/actions';
+import { Action, AnyAction } from './types/actions';
 import { Reducer } from './types/reducer';
 
 const randomString = () =>
@@ -8,7 +8,7 @@ const ActionTypes = {
   INIT: `@@redux/INIT${/* #__PURE__ */ randomString()}`,
 };
 
-export default function createStore<S, A extends Action>(
+export default function createStore<S, A extends Action = AnyAction>(
   reducer: Reducer<S, A>,
   preloadedState?: S,
 ) {

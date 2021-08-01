@@ -9,6 +9,7 @@ import { CombinedState } from './types/store';
 export default function combineReducers<S>(
   reducers: ReducersMapObject<S, any>,
 ): Reducer<CombinedState<S>>;
+
 export default function combineReducers(reducers: ReducersMapObject) {
   return function combination(
     state: StateFromReducersMapObject<typeof reducers> = {},

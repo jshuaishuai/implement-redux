@@ -1,4 +1,9 @@
-import { Action, AnyAction } from './types/actions';
+import {
+  AnyAction,
+  ActionCreator,
+  ActionCreatorsMapObject,
+} from './types/actions';
+import { Dispatch } from './types/store';
 
 function bindActionCreator<A extends AnyAction = AnyAction>(
   actionCreator: ActionCreator<A>,
@@ -9,18 +14,25 @@ function bindActionCreator<A extends AnyAction = AnyAction>(
   };
 }
 
-export interface ActionCreator<A, P extends any[] = any[]> {
-  (...args: P): A;
-}
-/**
- * Object whose values are action creator functions.
- */
-export interface ActionCreatorsMapObject<A = any, P extends any[] = any[]> {
-  [key: string]: ActionCreator<A, P>;
-}
-export interface Dispatch<A extends Action = AnyAction> {
-  <T extends A>(action: T, ...extraArgs: any[]): T;
-}
+export default function bindActionCreators<A, C extends ActionCreator<A>>(
+  actionCreator: C,
+  dispatch: Dispatch,
+): C;
+
+// export default function bindActionCreators<
+//   A extends ActionCreator<any>,
+//   B extends ActionCreator<any>,
+// >(actionCreator: A, dispatch: Dispatch): B;
+
+// export default function bindActionCreators<
+//   A,
+//   M extends ActionCreatorsMapObject<A>,
+// >(actionCreators: M, dispatch: Dispatch): M;
+
+export default function bindActionCreators<
+  M extends ActionCreatorsMapObject,
+  N extends ActionCreatorsMapObject,
+>(actionCreators: M, dispatch: Dispatch): N;
 
 export default function bindActionCreators(
   actionCreators: ActionCreator<any> | ActionCreatorsMapObject,
